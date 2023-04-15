@@ -11,6 +11,9 @@ def test_print_all(get_test_all):
 def test_print(get_test_item):
     assert get_test_item.__repr__() == 'Item(NAME1,5,8)'
 
+def test_calculate_total_price(get_test_item):
+    assert get_test_item.calculate_total_price() == 40
+
 def test_set_discount(get_test_item):
     new_item = get_test_item
     assert new_item.price == 5
