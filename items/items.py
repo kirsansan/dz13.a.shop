@@ -1,9 +1,9 @@
 class Item:
-    all : list  = []
+    all: list = []
     _discount = 1.0
 
     def __init__(self, name, price, amount):
-        self.name = name
+        self.__name = name
         self.price = price
         self.amount = amount
         self.all.append(self)
@@ -21,7 +21,20 @@ class Item:
         print("discount", self.__class__._discount)
         self.price = round(self.price * self.__class__._discount)
 
-    def set_discount(self, new_discount):
+    @classmethod
+    def set_discount(cls, new_discount):
         """set the discount for all items"""
-        self.__class__._discount = new_discount
+        cls._discount = new_discount
 
+    @classmethod
+    def discount(cls):
+        return cls._discount
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, new_name):
+        if len(new_name) < 11:
+            self.__name = new_name
